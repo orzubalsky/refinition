@@ -22,8 +22,9 @@ a:hover { color: black; cursor: pointer; }
 
 }
 #interface h1 {
-    margin: 180px auto 0;
-    width: 380px;
+    position: absolute;
+    left: 120px;
+    top: 140px;
 }
 #interface #toggleEdit {
     text-indent: -9999px;
@@ -54,18 +55,20 @@ a:hover { color: black; cursor: pointer; }
 }
 #interface ul#versions li {
     float: right;
-    margin-left: 0px;
+    margin: 0;
 }
 #interface ul#versions li a {
     display: block;
     height: 12px;
     width: 21px;
-    border-left: 3px solid #d6d6d6;
+    background-color: #d6d6d6;    
+    border-top: 10px solid white;
+    border-right: 3px solid white;
+    border-right: 9px solid white;
     text-indent: -9999px;
 }
 #interface ul#versions li a:hover {
     background-color: black;
-    border-left: 3px solid black;    
 
 }
 .box {

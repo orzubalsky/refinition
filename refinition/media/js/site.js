@@ -51,7 +51,7 @@ var site = window.site = new function()
            Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});				    
        });  
        
-       $('#interface #versions').live('mouseout', function(e) 
+       $('#interface #versions a').live('mouseout', function(e) 
        {
            e.preventDefault();
 

@@ -4,12 +4,12 @@ from terms.views import *
 
 
 @dajaxice_register(method='POST')
-def version_load(request, version_slug=None):
+def load_version(request, version_slug=None):
     """ """
     return version_load(request, version_slug)
 
 
 @dajaxice_register(method='POST')
-def version_save(request, data):
+def save_version(request, html):
     """ """
-    return version_save(request, deserialize_form(data))
+    return version_save(request, html)

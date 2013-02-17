@@ -1,25 +1,8 @@
-{% extends "base.html" %}
+{% extends request.is_ajax|yesno:"base_ajax.html,base.html" %}
 
 {% load humanize i18n l10n %}
 
 {% block content %}
-<div id="interface">
-    <h1>
-        <strong>doubt</strong><br />
-        noun
-    </h1>
-    <a id="toggleEdit" href="edit">edit</a>
-</div>
-<div id="latestVersion">
-    {{ latest_version.html|safe }}
-</div>
-
-
+{{ version.html|safe }}
 {% endblock content %}
 
-{% block extra_js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/jquery.tinymce.js"></script>
-<script type="text/javascript">
-var STATIC_URL = '{{ STATIC_URL }}'
-</script>
-{% endblock extra_js %}

@@ -32,12 +32,41 @@ a:hover { color: black; cursor: pointer; }
     width: 24px;
     position: fixed;
     bottom: 0;
-    right: 100px;
+    right: 200px;
     background-color: yellow;
     z-index: 10;
 }
 #interface #toggleEdit:hover {
     background-color: black;
+}
+#interface .controls {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 70px;    
+}
+#interface ul#versions {
+    display: none;    
+    position: fixed;
+    bottom: 0;
+    right: 250px;
+    z-index: 10; 
+}
+#interface ul#versions li {
+    float: right;
+    margin-left: 0px;
+}
+#interface ul#versions li a {
+    display: block;
+    height: 12px;
+    width: 21px;
+    border-left: 3px solid #d6d6d6;
+    text-indent: -9999px;
+}
+#interface ul#versions li a:hover {
+    background-color: black;
+    border-left: 3px solid black;    
+
 }
 .box {
     width: 380px;
@@ -69,7 +98,10 @@ a:hover { color: black; cursor: pointer; }
     right: 30px;
     bottom: 5px;
 }
-.box.edit .controls .save {
+.controls {
+    z-index: 10;
+}
+.controls .save {
     margin-left: 12px;
 }
 #latestVersion.editing {

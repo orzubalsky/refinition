@@ -40,7 +40,7 @@ class Version(Base):
     """
     """    
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
     
     term        = ForeignKey(Term, default="doubt")
     slug        = SlugField(max_length=120)

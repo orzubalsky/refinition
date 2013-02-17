@@ -2,6 +2,7 @@
 var site = window.site = new function() 
 {
     this.mode = 'preview';
+    this.original_html = '';
     
     this.init = function() 
     {
@@ -17,14 +18,63 @@ var site = window.site = new function()
         {
             e.preventDefault();
             
-            (self.mode == 'preview') ? self.activate_edit_mode() : self.activate_preview_mode();
+            (self.mode == 'preview') ? self.activate_edit_mode() : '';
         });
+        
+        $('#interface .cancel').live('click', function(e)
+        {
+            e.preventDefault();
+            
+            $('#latestVersion').html(self.original_html);
+            
+            self.activate_preview_mode();            
+        });
+        
+        $('#interface .save').live('click', function(e) 
+        {            
+            e.preventDefault();
+
+            self.activate_preview_mode();
+            
+            var html = $('#latestVersion').html();
+
+            Dajaxice.terms.save_version(self.save_version_callback, {'html': html });				    
+        });        
+
+       $('#interface #versions a').live('mouseover', function(e) 
+       {
+           e.preventDefault();
+
+           var slug = $(this).attr('id');
+
+           $('#loader').show();
+           Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});				    
+       });  
+       
+       $('#interface #versions').live('mouseout', function(e) 
+       {
+           e.preventDefault();
+
+           self.activate_edit_mode();
+       });        
+
+       $('#interface #versions a').live('click', function(e) 
+       {
+           e.preventDefault();
+
+           var slug = $(this).attr('id');
+
+           $('#loader').show();
+           Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});				    
+       });            
     };
     
     this.activate_edit_mode = function()
     {
         var self = this;
     
+        self.original_html = $('#latestVersion').html();
+            
         var html = '<a class="delete">x</a><a class="move">o</a>';
         var boxes = $('.box');
         
@@ -44,6 +94,8 @@ var site = window.site = new function()
     
         $('#latestVersion').addClass('editing');
         
+        $('#interface .controls, #interface ul#versions').fadeIn(300);
+        
         self.mode = 'edit';
     };
     
@@ -53,8 +105,12 @@ var site = window.site = new function()
         
         $('.box').removeClass('edit');
         $('.delete, .move').remove();
+        $('.ui-resizable-handle').remove();
     
         $('#latestVersion').removeClass('editing');
+    
+        $('#interface .controls, #interface ul#versions').fadeOut(300);
+        
         self.mode = 'preview';        
     };
     
@@ -143,57 +199,22 @@ var site = window.site = new function()
                             .resizable()
                             .appendTo("#latestVersion")
                             .fadeIn(300);
-            }
-            
+            }  
         });
-  
-        
-
-  
-        
-        
-    };
-
-    this.load_version = function() 
-    {
-        var self = this;
-                    
-        $('.version').bind('click', function(e) 
-        {
-            e.preventDefault();
-
-            var slug = $(this).attr('id');				
-
-            $('#loader').show();
-            Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});				    
-        });		    
     };
 
 
     this.load_version_callback = function(data)	
     {
         $('#loader').hide();
+
+        $('#latestVersion').html(data);
     };
 
 
-    this.save_version = function(href) 
-    {
-        var self = this;
-        
-        $('.save').live('submit', function(e) 
-        {            
-            e.preventDefault();
-
-            var data = $(this).serialize();
-
-            Dajaxice.terms.save_version(self.save_version_callback, {'data': data });				    
-        });
-    }; 
-	
-
     this.save_version_callback = function(data)	
     {
-        $('#content').empty().append(data).show();
+        $('#latestVersion').html(data);
     };
 };
 })(jQuery);

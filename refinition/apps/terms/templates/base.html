@@ -13,14 +13,36 @@
 </head>
 <body>
 	<div id="container">
+        <div id="interface">
+            <h1>
+                <strong>doubt</strong><br />
+                noun
+            </h1>
+            <a id="toggleEdit" href="edit">edit</a>
+            <ul id="versions">
+            {% for version in versions %}
+                <li><a id="{{ version.slug }}" href="{% url version-view version.slug %}">{{ version.slug }}</a></li>
+            {% endfor %}
+            </ul>
+            <div class="controls">
+                <a class="cancel">cancel</a>
+                <a class="save">save</a>
+            </div>
+        </div>	    
+        <div id="latestVersion">        
         {% block content %}
         {% endblock content %}
+        </div>
 	</div>
 
     {% dajaxice_js_import %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/lib/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/lib/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/site.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/jquery.tinymce.js"></script>
+    <script type="text/javascript">
+    var STATIC_URL = '{{ STATIC_URL }}'
+    </script>    
 	{% block extra_js %}{% endblock %}
 </body>
 </html>

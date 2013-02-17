@@ -17,7 +17,7 @@ refinition/static/
 refinition/media/uploads
 
 # ignore cache files
-refinition/tmp
+refinition/tmp/django_cache
 
 # ignore sql data dump:
 sample_data.json

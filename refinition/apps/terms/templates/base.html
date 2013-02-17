@@ -1,0 +1,26 @@
+{% load i18n dajaxice_templatetags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doubt</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery-ui/jquery-ui-1.10.1.custom.min.css" />	
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/site.css" />
+	{% block extra_css %}{% endblock %}
+</head>
+<body>
+	<div id="container">
+        {% block content %}
+        {% endblock content %}
+	</div>
+
+    {% dajaxice_js_import %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/lib/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/site.js"></script>
+	{% block extra_js %}{% endblock %}
+</body>
+</html>

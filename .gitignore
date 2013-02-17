@@ -1,0 +1,26 @@
+*.pyc
+*~
+local_settings.py
+.DS_Store
+
+# ignore buildout's workspace stuff:
+.installed.cfg
+bin/
+develop-eggs/
+eggs/
+parts/
+
+# ignore static files (for now):
+ts/static/
+
+# ignore the migration app
+ts/apps/migration/
+
+# ignore uploaded files
+ts/media/uploads
+
+# ignore cache files
+ts/tmp
+
+# ignore sql data dump:
+sample_data.json

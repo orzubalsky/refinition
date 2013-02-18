@@ -193,23 +193,19 @@ var site = window.site = new function()
                 
         // add box
         $('#latestVersion.editing').live('click', function(e)
-        {
-            // check that user is clicking on a blank area
-            if ( e.target == this )
-            {
-                var id = randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        {            
+            var id = randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
-                var innerHtml = '<a class="delete">x</a><a class="move">o</a><div class="content" id="' + id + '">edit me!</div>';
-                
-                var box = $('<div>')
-                            .addClass('box text edit')
-                            .append(innerHtml)
-                            .css({'left':e.pageX+'px', 'top':e.pageY+'px'})
-                            .draggable({ handle: '.move', cursor: 'move' })
-                            .resizable()
-                            .appendTo("#latestVersion")
-                            .fadeIn(300);
-            }  
+            var innerHtml = '<a class="delete">x</a><a class="move">o</a><div class="content" id="' + id + '">edit me!</div>';
+            
+            var box = $('<div>')
+                        .addClass('box text edit')
+                        .append(innerHtml)
+                        .css({'left':e.pageX+'px', 'top':e.pageY+'px'})
+                        .draggable({ handle: '.move', cursor: 'move' })
+                        .resizable()
+                        .appendTo("#latestVersion")
+                        .fadeIn(300);
         });
     };
 

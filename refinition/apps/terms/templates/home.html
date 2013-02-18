@@ -8,7 +8,7 @@
         <strong>doubt</strong><br />
         noun
     </h1>
-    <a id="toggleEdit" href="edit">edit</a>
+    <a id="toggleEdit">edit</a>
     <ul id="versions">
     {% for version in versions %}
         <li><a id="{{ version.slug }}" href="{% url version-view version.slug %}">{{ version.slug }}</a></li>

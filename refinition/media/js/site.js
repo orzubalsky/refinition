@@ -14,7 +14,7 @@ var site = window.site = new function()
     {
         var self = this;
         
-        $('#toggleEdit').click(function(e)
+        $('#toggleEdit').live('click', function(e)
         {
             e.preventDefault();
             
@@ -224,7 +224,7 @@ var site = window.site = new function()
 
     this.save_version_callback = function(data)	
     {
-        $('#latestVersion').html(data);
+        $('#container').html(data);
     };
 };
 })(jQuery);

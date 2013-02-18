@@ -11,15 +11,12 @@ a:hover { color: black; cursor: pointer; }
     height: 100%;
     position: relative;
 }
-#latestVersion, #interface, #allVersions, .version {
+#latestVersion, #interface {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-}
-#allVersions .version {
-    display: none;
 }
 #interface {
 

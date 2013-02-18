@@ -28,12 +28,7 @@
                 <a class="cancel">cancel</a>
                 <a class="save">save</a>
             </div>
-        </div>
-        <div id="allVersions">
-            {% for version in versions %}
-            <div class="version" id="html_{{ version.slug }}">{{ version.html|safe }}</div>
-            {% endfor %}
-        </div>
+        </div>	    
         <div id="latestVersion">        
         {% block content %}
         {% endblock content %}

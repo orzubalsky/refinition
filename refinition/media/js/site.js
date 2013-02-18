@@ -14,7 +14,7 @@ var site = window.site = new function()
     {
         var self = this;
         
-        $('#toggleEdit').click(function(e)
+        $('#toggleEdit').live('click', function(e)
         {
             e.preventDefault();
             
@@ -143,9 +143,7 @@ var site = window.site = new function()
             var html = '<div class="controls"><a class="cancel">cancel</a><a class="save">save</a></div>';
             
             $(box).append(html);
-            
-            //$('*:tinymce').tinymce().remove();
-                                    
+                                                
             $('.content', box).tinymce(
             {   
                 // Location of TinyMCE script
@@ -164,8 +162,6 @@ var site = window.site = new function()
                 // content CSS
                 content_css : STATIC_URL + 'css/site.css',
             });
-            
-            console.log($('*:tinymce'));
             
             // canceling edits
             $('.cancel').live('click', function(e)
@@ -228,7 +224,7 @@ var site = window.site = new function()
 
     this.save_version_callback = function(data)	
     {
-        $('#latestVersion').html(data);
+        $('#container').html(data);
     };
 };
 })(jQuery);

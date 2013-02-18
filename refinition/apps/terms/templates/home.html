@@ -3,6 +3,24 @@
 {% load humanize i18n l10n %}
 
 {% block content %}
-{{ version.html|safe }}
+<div id="interface">
+    <h1>
+        <strong>doubt</strong><br />
+        noun
+    </h1>
+    <a id="toggleEdit">edit</a>
+    <ul id="versions">
+    {% for version in versions %}
+        <li><a id="{{ version.slug }}" href="{% url version-view version.slug %}">{{ version.slug }}</a></li>
+    {% endfor %}
+    </ul>
+    <div class="controls">
+        <a class="cancel">cancel</a>
+        <a class="save">save</a>
+    </div>
+</div>	    
+<div id="latestVersion">        
+    {{ version.html|safe }}
+</div>
 {% endblock content %}
 

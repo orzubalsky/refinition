@@ -7,7 +7,7 @@ var site = window.site = new function()
     this.init = function() 
     {
         this.toggle_mode();
-        this.editing_interactions();        
+        this.editing_interactions();   
     };
 
     this.toggle_mode = function()
@@ -116,6 +116,8 @@ var site = window.site = new function()
     
     this.editing_interactions = function()
     {
+        var self = this;
+        
         // deleting a box
         $('.box.edit .delete').live('click', function(e)
         {
@@ -135,15 +137,17 @@ var site = window.site = new function()
             e.preventDefault();
             
             var box = $(this).parent();
-            
+
             var original_html = $(this).html();
             
             var html = '<div class="controls"><a class="cancel">cancel</a><a class="save">save</a></div>';
             
             $(box).append(html);
             
+            //$('*:tinymce').tinymce().remove();
+                                    
             $('.content', box).tinymce(
-            {
+            {   
                 // Location of TinyMCE script
                 script_url : STATIC_URL + 'js/tiny_mce/tiny_mce.js',
 
@@ -160,6 +164,8 @@ var site = window.site = new function()
                 // content CSS
                 content_css : STATIC_URL + 'css/site.css',
             });
+            
+            console.log($('*:tinymce'));
             
             // canceling edits
             $('.cancel').live('click', function(e)
@@ -183,13 +189,21 @@ var site = window.site = new function()
             });        
         });
         
+        function randomString(length, chars) {
+            var result = '';
+            for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+            return result;
+        }
+                
         // add box
         $('#latestVersion.editing').live('click', function(e)
         {
             // check that user is clicking on a blank area
             if ( e.target == this )
             {
-                var innerHtml = '<a class="delete">x</a><a class="move">o</a><div class="content">edit me!</div>';
+                var id = randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+                var innerHtml = '<a class="delete">x</a><a class="move">o</a><div class="content" id="' + id + '">edit me!</div>';
                 
                 var box = $('<div>')
                             .addClass('box text edit')

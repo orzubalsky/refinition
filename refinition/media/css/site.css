@@ -62,7 +62,7 @@ a:hover { color: black; cursor: pointer; }
     height: 12px;
     width: 21px;
     background-color: #d6d6d6;    
-    border-top: 10px solid white;
+    border-top: 50px solid white;
     border-right: 3px solid white;
     border-right: 9px solid white;
     text-indent: -9999px;

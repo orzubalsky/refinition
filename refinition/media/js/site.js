@@ -3,6 +3,7 @@ var site = window.site = new function()
 {
     this.mode = 'preview';
     this.original_html = '';
+    this.loaded = false;
     
     this.init = function() 
     {
@@ -54,6 +55,11 @@ var site = window.site = new function()
        $('#interface #versions a').live('mouseout', function(e) 
        {
            e.preventDefault();
+           
+           if (!self.loaded)
+           {
+              $('#latestVersion').html(self.original_html);
+           }
 
            self.activate_edit_mode();
        });        
@@ -65,7 +71,9 @@ var site = window.site = new function()
            var slug = $(this).attr('id');
 
            $('#loader').show();
-           Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});				    
+           
+           self.loaded = true;
+           Dajaxice.terms.load_version(self.load_version_callback, {'version_slug': slug});
        });            
     };
     
@@ -196,9 +204,7 @@ var site = window.site = new function()
         {            
             // check that user is clicking on a blank area
             if ( !$(e.target).closest("#interface, .box, .controls, .content").length )
-            {
-                console.log('a');
-                
+            {                
                 var id = randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
                 var innerHtml = '<a class="delete">x</a><a class="move">o</a><div class="content" id="' + id + '">edit me!</div>';
@@ -220,7 +226,7 @@ var site = window.site = new function()
     {
         $('#loader').hide();
 
-        $('#latestVersion').html(data);
+        $('#latestVersion').html(data);        
     };
 
 

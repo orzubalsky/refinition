@@ -148,7 +148,7 @@ var site = window.site = new function()
 
             var original_html = $(this).html();
             
-            var html = '<div class="controls"><a class="cancel">cancel</a><a class="save">save</a></div>';
+            var html = '<div class="controls"><a class="cancel">cancel</a><a class="save">okay</a></div>';
             
             $(box).append(html);
                                                 
